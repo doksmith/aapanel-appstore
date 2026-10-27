@@ -5,37 +5,42 @@
     "apptype": "Middleware",
     "appTypeCN": "中间件",
     "appversion": [
-        {"m_version":"7","s_version":["4.0","2.5","0.15"]},
-        {"m_version":"6","s_version":["2.14"]}
+        {"m_version":"latest","s_version":[]},
+        {"m_version":"7","s_version":["4.2","4.0","2.7","2.5","0.15"]},
+        {"m_version":"6","s_version":["2.16","2.14"]}
     ],
-    "appdesc": "内存存储的数据结构服务器，可用作数据库，高速缓存和消息队列代理",
+    "appdesc": "High-performance in-memory key-value database, cache, and message broker. Recommended for WordPress and Flarum object caching.",
     "appstatus": 1,
     "icon": "",
     "sort": 5,
     "home": "https://redis.io",
-    "help": "",
+    "help": "https://redis.io/docs/",
     "cpu": 0,
     "mem": 0,
     "disk": 10240,
-    "updateat": 1722408250,
+    "updateat": 1793072754,
     "installed": false,
     "reuse": true,
     "depend": null,
     "field": [
-        {"attr":"allow_access","name":"允许外部访问","type":"checkbox","default":true,"suffix":"允许直接通过主机IP+端口访问","unit":""},
-        {"attr":"redis_port","name":"端口","type":"number","default":26739,"suffix":"","unit":""},
-        {"attr":"redis_password","name":"redis密码","type":"password","default":"","suffix":"","unit":""},
-        {"attr":"cpus","name":"cpu核心数限制","type":"number","default":0,"suffix":"0为不限制,最大可用核心数为: ","unit":""},
-        {"attr":"memory_limit","name":"内存限制","type":"number","default":0,"suffix":"0为不限制,最大可用内存为: ","unit":""}
+        {"attr":"allow_access","name":"Allow External Access","type":"checkbox","default":true,"suffix":"Allow direct access via host IP + port","unit":""},
+        {"attr":"redis_port","name":"Port","type":"number","default":26739,"suffix":"Redis service port","unit":""},
+        {"attr":"redis_password","name":"Password","type":"password","default":"","suffix":"Redis authentication password (requirepass)","unit":""},
+        {"attr":"cpus","name":"CPU Limit","type":"number","default":0,"suffix":"0 for unlimited, maximum available cores: ","unit":""},
+        {"attr":"memory_limit","name":"Memory Limit","type":"number","default":0,"suffix":"0 for unlimited, maximum available memory: ","unit":""}
     ],
     "env": [
-        {"key":"version","type":"string","default":null,"desc":"版本号"},
-        {"key":"redis_password","type":"password","default":null,"desc":"redis密码"},
-        {"key":"redis_port","type":"port","default":null,"desc":"redis端口"},
-        {"key":"app_path","type":"path","default":null,"desc":"应用数据目录"},
-        {"key":"host_ip","type":"string","default":null,"desc":"主机IP"},
-        {"key":"cpus","type":"number","default":null,"desc":"cpu核心数限制"},
-        {"key":"memory_limit","type":"number","default":null,"desc":"内存限制"}
+        {"key":"version","type":"string","default":null,"desc":"Version number"},
+        {"key":"redis_password","type":"password","default":null,"desc":"Redis password"},
+        {"key":"redis_port","type":"port","default":null,"desc":"Redis port"},
+        {"key":"app_path","type":"path","default":null,"desc":"Application data directory"},
+        {"key":"host_ip","type":"string","default":null,"desc":"Host IP"},
+        {"key":"cpus","type":"number","default":null,"desc":"CPU core limit"},
+        {"key":"memory_limit","type":"number","default":null,"desc":"Memory limit"}
     ],
-    "volumes": {"data": {"type": "path", "desc": "数据目录"}, "logs": {"type": "path", "desc": "日志目录"}, "redis.conf": {"type": "file", "desc": "配置文件"}}
+    "volumes": {
+        "data": {"type": "path", "desc": "Redis data persistence directory"},
+        "logs": {"type": "path", "desc": "Redis log directory"},
+        "redis.conf": {"type": "file", "desc": "Redis configuration file"}
+    }
 }
