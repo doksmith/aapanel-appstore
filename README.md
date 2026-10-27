@@ -1,24 +1,31 @@
-# 宝塔面板-Docker应用商店官方仓库
+# aaPanel / Pagoda Panel - Docker AppStore Repository
 
-本仓库用于宝塔面板 Docker 应用商店的官方应用收录与维护。
+This repository is used for indexing, publishing, and maintaining applications for the aaPanel / Pagoda Panel Docker AppStore.
 
-- 反馈与交流：提交 Issues 或加入 QQ 群 662047798
-- 欢迎 PR：提交你的 Docker 应用至应用商店，共建生态
+- **Feedback & Discussions**: Submit [Issues](https://github.com/dyzulk-lab/appstore/issues)
+- **Contributions Welcome**: Submit Pull Requests (PR) to add or update Docker applications and help grow the ecosystem.
 
-## 快速开始：如何提交一个应用
-1. 在 `apps/<your-app-name>/` 下创建目录，并放置：
-   - `app.json`（应用元信息）
-   - `ico-dkapp_{appname}.png`（100x100 png）
-   - 与 `app.json.appname` 对应的版本目录,每个目录包含：
+---
+
+## Quick Start: How to Submit an Application
+
+1. Create a directory under `apps/<your-app-name>/` containing:
+   - `app.json` (Application metadata)
+   - `ico-dkapp_{appname}.png` (100x100 PNG icon)
+   - A version directory matching `app.json.appname`, containing:
      - `docker-compose.yml`
      - `.env`
-2. 编写 `app.json`（字段规则见下文，完整模板见 `template.md`）
-3. 编写 `docker-compose.yml` 与 `.env`，确保变量一致并可启动
-4. 本地自测通过后提交 PR
+2. Write `app.json` (See field rules below; for the complete template and specifications, see `template.md`).
+3. Write `docker-compose.yml` and `.env`, ensuring all variables are consistent and the container launches properly.
+4. Test locally, then submit a Pull Request.
 
-建议先阅读：[template.md](template.md),仓库规范模板，含完整示例与最佳实践）
+> [!TIP]
+> Recommended reading: [template.md](template.md) for full specification templates, field mappings, and best practices.
 
-## 目录结构示例
+---
+
+## Directory Structure Example
+
 ```
 apps/
 └── wordpress/
@@ -29,23 +36,33 @@ apps/
         └── .env
 ```
 
-## 图标与命名
-- `ico-dkapp_${appname}.png`：100x100 像素、png 格式
-- `appname` 使用小写中划线或下划线风格，避免空格与大写
-- 目录名与 `appname` 建议保持一致
+---
 
-## 质量检查（提交前自检）
-- 目录包含 `app.json`、`ico-dkapp_${appname}.png`、对应版本目录与必要文件
-- `.env` 至少包含：`HOST_IP`、`CPUS`、`MEMORY_LIMIT`、`APP_PATH` 与自定义变量
-- `docker-compose.yml` 使用 `.env` 的大写变量，端口按 `${HOST_IP}:${PORT}` 规范
-- `labels.createdBy: "bt_apps"` 存在
-- 依赖声明（如有）合理且与说明一致
-- 说明链接（`home`、`help`）可访问
+## Icon & Naming Conventions
 
-## 提交流程（PR 要求）
-- 确保能在标准 Docker 环境下拉起并运行
-- 遵循本文与 `template.md` 规范
-- PR 描述中附：应用简介、镜像版本、主要环境变量说明、是否有依赖
-- 变更图标、文档与 compose 时，同步更新 `app.json` 与版本目录
+- **Icon**: `ico-dkapp_${appname}.png` (Exactly 100x100 pixels, PNG format).
+- **App Name**: `appname` should use lowercase letters with underscores (`_`) or hyphens (`-`). Avoid uppercase letters and whitespace.
+- Directory name and `appname` should remain identical.
 
-更多细节、示例与最佳实践请参考：`template.md`。祝开发顺利！
+---
+
+## Quality Assurance Checklist (Before Submitting PR)
+
+- [ ] Directory contains `app.json`, `ico-dkapp_${appname}.png`, and the version directory with all necessary files.
+- [ ] `.env` includes at least: `HOST_IP`, `CPUS`, `MEMORY_LIMIT`, `APP_PATH`, and application-specific variables.
+- [ ] `docker-compose.yml` references uppercase variables from `.env`, with ports bound using the `${HOST_IP}:${PORT}` convention.
+- [ ] Label `labels.createdBy: "bt_apps"` is present under the main service.
+- [ ] Dependency declarations (`depend`), if required, are accurate and verified.
+- [ ] Category label `appTypeCN` preserves its standard internal category identifier (e.g., `建站`, `数据库`, `实用工具`, `中间件`, `存储/网盘`).
+- [ ] External links (`home`, `help`) are valid and accessible.
+
+---
+
+## Submission Workflow (PR Requirements)
+
+- Verify that containers can be pulled and run successfully in a standard Docker environment.
+- Adhere strictly to the guidelines in this document and `template.md`.
+- Include in your PR description: brief application summary, image versions, key environment variables, and any database/service dependencies.
+- When modifying icons, documentation, or compose files, ensure `app.json` and the version directory are updated simultaneously.
+
+For further details, examples, and best practices, please refer to [template.md](template.md).
